@@ -10,7 +10,7 @@ Admin
 id
 felhasznalonev
 password
-emal
+email
 
 fonok_regisztralasa_elfogadasa
 admin_hozzaadasa
