@@ -1,0 +1,31 @@
+1. Bejelentkezés
+	Akármilyen jogosultsággal rendelkezik is, akkor tud belépni, ha az adatai már fel vannak töltve a táblába és a belépési email cím és jelszó megfelelő volt.
+
+2. A felület megjelenítése
+	Ez attól függ, milyen jogosultsággal rendelkezik a belépő.
+
+3. Távollétek kezelése
+	Bárki hozzáadhat új távollétet, de csak a 0, vagy 1-es jogosultságúak törölhetik, vagy szerkeszthetik.
+
+4. Beosztás készítése
+	Beosztást csak 0-ás, vagy 1-es jogosultsággal rendelkező készíthet.
+	A beosztás egy "táblázatos" formában jelenik meg, tartalmazza a munkaidő kezdetét és végét. Ha pedig a munkavállaló korábban már lefoglalt egy napot szabadságra, vagy egyéb távollétre, akkor arra a napra már a távollét jelenjen meg.
+	A pihenőnapok üresen maradnak.
+
+5. A beosztás tárolása
+	A jelenléti ív elkészítésének alapja a beosztás és a távollétek nyilvántartása.
+	Ezért a beosztást is szükséges tárolni.
+
+6. Jelenléti ív elkészítése
+	Jelenléti ív készülhet hónap közben (ideiglenes, nem tárolt (szerintem)), bármely napon, vagy a hónap elteltével (végleges, tárolt).
+	A jelenléti ív elkészítésének alapja a beosztás és a távolléti nyilvántartás.
+	A jelenléti ív bármely napja szerkeszthető.
+	A jelenléti ív készítésnek része a munkában, vagy távolléten töltött napok összeszámlálása és megjelenítése a jelenléti íven. 
+	Én nem akarnék abba belebonyolódni, hogy lehetséges-e a túlmunka, nem bonyolítanám.
+	
+7. Jelenléti ív exportálása
+	Exportálás PDF, vagy EXCEL, vagy vármilyen egyéb formátumba, amit meg tudunk csinálni.
+	
+8. Feladási fájl készítése a bérszámfejtés számára.
+	Ez egy olyan szövegfájl, ami a számfejtéshez szükséges adatokat a megfelelő tagolásban tartalmazza.
+	
