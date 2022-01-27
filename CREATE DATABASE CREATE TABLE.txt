@@ -1,6 +1,28 @@
 CREATE DATABASE `vizsgaremek`
 
-CREATE TABLE `vizsgaremek`.`szemelyek` ( `Szemely_ID` INT NOT NULL AUTO_INCREMENT ,  `jog_ID` INT NOT NULL COMMENT 'Kapcsolat a Jogosultsagok tablaval.' ,  `osztaly_ID` INT NOT NULL COMMENT 'Kapcsolat az Osztalyok tablaval.' ,  `Nev` VARCHAR(50) NOT NULL ,  `Szuletesi_hely` VARCHAR(50) NOT NULL ,  `Szuletsi_ido` DATE NOT NULL ,  `Anyja_neve` VARCHAR(50) NOT NULL ,  `Lakcime` VARCHAR(70) NOT NULL ,  `Adozonosito` CHAR(10) NOT NULL ,  `TAJ` CHAR(9) NOT NULL ,  `Munkakor` VARCHAR(50) NOT NULL COMMENT 'Kereskedelmi-osztaly vezeto, vagy kereskedo...' ,  `E-mail` VARCHAR(50) NOT NULL COMMENT 'Egy e-mail cim csak egyszer szerepelhet.' ,  `Jelszo` VARCHAR(50) NOT NULL COMMENT 'Egy jelszo cim csak egyszer szerepelhet.' ,  `Napi_munkaido` FLOAT NOT NULL DEFAULT '8' COMMENT 'Órában meghatározva.' ,  `Munkakozi_szunet` FLOAT NOT NULL DEFAULT '20' COMMENT 'Percekben meghatározva.' ,    PRIMARY KEY  (`Szemely_ID`),    UNIQUE  `email` (`E-mail`),    UNIQUE  `jelszo` (`Jelszo`)) ENGINE = InnoDB;
+CREATE TABLE `vizsgaremek`.`szemelyek` ( `Szemely_ID` INT NOT NULL AUTO_INCREMENT ,  `jog_ID` INT NOT NULL COMMENT 'Kapcsolat a Jogosultsagok tablaval.' ,  `osztaly_ID` INT NOT NULL COMMENT 'Kapcsolat az Osztalyok tablaval.' ,  `Nev` VARCHAR(50) NOT NULL ,  `Szuletesi_hely` VARCHAR(50) NOT NULL ,  `Szuletsi_ido` DATE NOT NULL ,  `Anyja_neve` VARCHAR(50) NOT NULL ,  `Lakcime` VARCHAR(70) NOT NULL ,  `Adozonosito` CHAR(10) NOT NULL ,  `TAJ` CHAR(9) NOT NULL ,  `Munkakor` VARCHAR(50) NOT NULL COMMENT 'Kereskedelmi-osztaly vezeto, vagy kereskedo...' ,  `E-mail` VARCHAR(50) NOT NULL COMMENT 'Egy e-mail cim csak egyszer szerepelhet.' ,  `Jelszo` VARCHAR(50) NOT NULL COMMENT 'Egy jelszo csak egyszer szerepelhet.' ,  `Napi_munkaido` FLOAT NOT NULL DEFAULT '8' COMMENT 'Órában meghatározva.' ,  `Munkakozi_szunet` FLOAT NOT NULL DEFAULT '20' COMMENT 'Percekben meghatározva.' ,    PRIMARY KEY  (`Szemely_ID`),    UNIQUE  `email` (`E-mail`),    UNIQUE  `jelszo` (`Jelszo`)) ENGINE = InnoDB;
 
 ALTER TABLE `szemelyek`  ADD `Munkarend_ID` INT NOT NULL  AFTER `osztaly_ID`;
 ALTER TABLE `szemelyek`  ADD `Belepes_Datum` DATE NOT NULL  AFTER `Munkakor`;
+
+--Ez pedig egyben az egész tábla a két új mezővel együtt.
+CREATE TABLE `vizsgaremek`.`szemelyek` ( 
+`Szemely_ID` INT NOT NULL AUTO_INCREMENT ,  
+`jog_ID` INT NOT NULL COMMENT 'Kapcsolat a Jogosultsagok tablaval.' ,  
+`osztaly_ID` INT NOT NULL COMMENT 'Kapcsolat az Osztalyok tablaval.' ,  
+`Munkarend_ID` INT NOT NULL COMMENT 'Kapcsolat az Munkarend tablaval.' , 
+`Nev` VARCHAR(50) NOT NULL ,  
+`Szuletesi_hely` VARCHAR(50) NOT NULL ,  
+`Szuletsi_ido` DATE NOT NULL ,  
+`Anyja_neve` VARCHAR(50) NOT NULL ,  
+`Lakcime` VARCHAR(70) NOT NULL ,  
+`Adozonosito` CHAR(10) NOT NULL ,  
+`TAJ` CHAR(9) NOT NULL ,  
+`Munkakor` VARCHAR(50) NOT NULL COMMENT 'Kereskedelmi-osztaly vezeto, vagy kereskedo...' ,  
+`Belepes_Datum` DATE NOT NULL , 
+`E-mail` VARCHAR(50) NOT NULL COMMENT 'Egy e-mail cim csak egyszer szerepelhet.' ,  
+`Jelszo` VARCHAR(50) NOT NULL COMMENT 'Egy jelszo csak egyszer szerepelhet.' ,  
+`Napi_munkaido` FLOAT NOT NULL DEFAULT '8' COMMENT 'Órában meghatározva.' ,  
+`Munkakozi_szunet` FLOAT NOT NULL DEFAULT '20' COMMENT 'Percekben meghatározva.' ,    
+PRIMARY KEY  (`Szemely_ID`),    UNIQUE  `email` (`E-mail`),    UNIQUE  `jelszo` (`Jelszo`)) ENGINE = InnoDB;
+
