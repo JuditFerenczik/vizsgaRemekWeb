@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-01-27T12:13:21.577Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36" etag="wq0Z36LNk0HzD30duLgS" version="16.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2022-01-27T12:16:35.869Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36" etag="WJ_PFscEzYft9n7Qj8Kk" version="16.2.7" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="2272" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -773,7 +773,7 @@
         <mxCell id="-CJX-dJEOjjiPyYFDAkS-326" value="Egy személy egy osztályon dolgozhat, &lt;br&gt;de egy osztályon több személy is dolgozik" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;startSize=10;endSize=10;" edge="1" parent="1" source="-CJX-dJEOjjiPyYFDAkS-317" target="-CJX-dJEOjjiPyYFDAkS-311">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="-CJX-dJEOjjiPyYFDAkS-330" value="Osztalyok" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
+        <mxCell id="-CJX-dJEOjjiPyYFDAkS-330" value="Osztalyok(1)" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
           <mxGeometry x="230" y="830" width="250" height="120" as="geometry" />
         </mxCell>
         <mxCell id="-CJX-dJEOjjiPyYFDAkS-331" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="-CJX-dJEOjjiPyYFDAkS-330">
