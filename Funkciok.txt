@@ -24,8 +24,17 @@
 	Én nem akarnék abba belebonyolódni, hogy lehetséges-e a túlmunka, nem bonyolítanám.
 	
 7. Jelenléti ív exportálása
-	Exportálás PDF, vagy EXCEL, vagy vármilyen egyéb formátumba, amit meg tudunk csinálni.
+	Exportálás PDF, vagy EXCEL, vagy bármilyen egyéb formátumba, amit meg tudunk csinálni.
 	
 8. Feladási fájl készítése a bérszámfejtés számára.
 	Ez egy olyan szövegfájl, ami a számfejtéshez szükséges adatokat a megfelelő tagolásban tartalmazza.
+	
+9. Jogosultságok (a jogosultsági fajták)
+	Az adatbázis létrehozásakor, a jogosultságok táblát programozottan fel is kell tölteni, hogy elkerüljük a felhasználói tévesztéseket.
+	
+10. Távollétek (távollétek fajái)
+	Ugyanaz, mint a Jogosultságoknál.
+	
+11. Munkarendek (Munkarandek fajái)
+	Ugyanaz, mint a Jogosultságoknál.
 	
