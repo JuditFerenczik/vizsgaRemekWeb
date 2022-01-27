@@ -2,7 +2,7 @@
 	Laci: Igen :)
 	Nóri:
 	
-	
+Na szuper!! Akkor ha valamit hozzátennétek/módosítanátok csak bátran!	
 	
 Adatbázis:
 
@@ -10,7 +10,7 @@ Admin
 id
 felhasznalonev
 password
-emal
+email
 
 fonok_regisztralasa_elfogadasa
 admin_hozzaadasa
