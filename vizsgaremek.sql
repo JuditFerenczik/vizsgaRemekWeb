@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Jan 28. 17:57
+-- Létrehozás ideje: 2022. Jan 29. 17:20
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.10
 
@@ -44,7 +44,7 @@ CREATE TABLE `beosztasok` (
 CREATE TABLE `jelenletek` (
   `Jelenlet_ID` int(11) NOT NULL,
   `Szemely_ID` int(11) NOT NULL,
-  `Kezd` int(11) NOT NULL,
+  `Kezdete` datetime NOT NULL,
   `Vege` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
@@ -62,6 +62,29 @@ CREATE TABLE `jogosultsag` (
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `munkarendek`
+--
+
+CREATE TABLE `munkarendek` (
+  `Munkarend_ID` int(11) NOT NULL,
+  `Megnevezes` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL COMMENT 'Általános (8-16.20.ig) vagy kötetlen munkarend'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `osztalyok`
+--
+
+CREATE TABLE `osztalyok` (
+  `Osztaly_ID` int(11) NOT NULL,
+  `Megnevezes` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `Osztalyvezeto_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `szemelyek`
 --
 
@@ -71,6 +94,7 @@ CREATE TABLE `szemelyek` (
   `osztaly_ID` int(11) NOT NULL COMMENT 'Kapcsolat az Osztalyok tablaval.',
   `Munkarend_ID` int(11) NOT NULL,
   `Nev` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `Adoazonosito` int(10) NOT NULL,
   `Munkakor` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL COMMENT 'Kereskedelmi-osztaly vezeto, vagy kereskedo...',
   `Belepes_Datum` date NOT NULL,
   `E-mail` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL COMMENT 'Egy e-mail cim csak egyszer szerepelhet.',
@@ -89,6 +113,30 @@ CREATE TABLE `szemelyjogosultsag` (
   `Szemely_ID` int(11) NOT NULL,
   `Jog_ID` int(11) NOT NULL,
   `HatalyDatum` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `szemely_tavollet`
+--
+
+CREATE TABLE `szemely_tavollet` (
+  `Szemely_ID` int(11) NOT NULL,
+  `Tavollet_ID` varchar(1) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `Kezdete` date NOT NULL,
+  `Vege` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `tavolletek`
+--
+
+CREATE TABLE `tavolletek` (
+  `Tavollet_ID` varchar(1) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `Tavollet_fajta` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
@@ -116,12 +164,28 @@ ALTER TABLE `jogosultsag`
   ADD PRIMARY KEY (`jog_ID`);
 
 --
+-- A tábla indexei `munkarendek`
+--
+ALTER TABLE `munkarendek`
+  ADD PRIMARY KEY (`Munkarend_ID`),
+  ADD KEY `Munkarend_ID` (`Munkarend_ID`);
+
+--
+-- A tábla indexei `osztalyok`
+--
+ALTER TABLE `osztalyok`
+  ADD PRIMARY KEY (`Osztaly_ID`),
+  ADD UNIQUE KEY `Osztalyvezeto_ID` (`Osztalyvezeto_ID`);
+
+--
 -- A tábla indexei `szemelyek`
 --
 ALTER TABLE `szemelyek`
   ADD PRIMARY KEY (`Szemely_ID`),
   ADD UNIQUE KEY `email` (`E-mail`),
-  ADD UNIQUE KEY `jelszo` (`Jelszo`);
+  ADD UNIQUE KEY `jelszo` (`Jelszo`),
+  ADD UNIQUE KEY `Munkarend_ID` (`Munkarend_ID`),
+  ADD UNIQUE KEY `osztaly_ID` (`osztaly_ID`);
 
 --
 -- A tábla indexei `szemelyjogosultsag`
@@ -129,6 +193,19 @@ ALTER TABLE `szemelyek`
 ALTER TABLE `szemelyjogosultsag`
   ADD PRIMARY KEY (`Szemely_ID`),
   ADD UNIQUE KEY `Szemely_ID` (`Jog_ID`);
+
+--
+-- A tábla indexei `szemely_tavollet`
+--
+ALTER TABLE `szemely_tavollet`
+  ADD PRIMARY KEY (`Tavollet_ID`),
+  ADD UNIQUE KEY `Szemely_ID` (`Szemely_ID`);
+
+--
+-- A tábla indexei `tavolletek`
+--
+ALTER TABLE `tavolletek`
+  ADD PRIMARY KEY (`Tavollet_ID`);
 
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
@@ -145,6 +222,12 @@ ALTER TABLE `beosztasok`
 --
 ALTER TABLE `jelenletek`
   MODIFY `Jelenlet_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `osztalyok`
+--
+ALTER TABLE `osztalyok`
+  MODIFY `Osztaly_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `szemelyek`
@@ -169,11 +252,31 @@ ALTER TABLE `jelenletek`
   ADD CONSTRAINT `jelenletek_ibfk_1` FOREIGN KEY (`Szemely_ID`) REFERENCES `szemelyek` (`Szemely_ID`);
 
 --
+-- Megkötések a táblához `osztalyok`
+--
+ALTER TABLE `osztalyok`
+  ADD CONSTRAINT `osztalyok_ibfk_1` FOREIGN KEY (`Osztalyvezeto_ID`) REFERENCES `szemelyek` (`Szemely_ID`);
+
+--
+-- Megkötések a táblához `szemelyek`
+--
+ALTER TABLE `szemelyek`
+  ADD CONSTRAINT `szemelyek_ibfk_1` FOREIGN KEY (`Munkarend_ID`) REFERENCES `munkarendek` (`Munkarend_ID`),
+  ADD CONSTRAINT `szemelyek_ibfk_2` FOREIGN KEY (`osztaly_ID`) REFERENCES `osztalyok` (`Osztaly_ID`);
+
+--
 -- Megkötések a táblához `szemelyjogosultsag`
 --
 ALTER TABLE `szemelyjogosultsag`
   ADD CONSTRAINT `szemelyjogosultsag_ibfk_1` FOREIGN KEY (`Szemely_ID`) REFERENCES `szemelyek` (`Szemely_ID`),
   ADD CONSTRAINT `szemelyjogosultsag_ibfk_2` FOREIGN KEY (`Jog_ID`) REFERENCES `jogosultsag` (`jog_ID`);
+
+--
+-- Megkötések a táblához `szemely_tavollet`
+--
+ALTER TABLE `szemely_tavollet`
+  ADD CONSTRAINT `szemely_tavollet_ibfk_1` FOREIGN KEY (`Szemely_ID`) REFERENCES `szemelyek` (`Szemely_ID`),
+  ADD CONSTRAINT `szemely_tavollet_ibfk_2` FOREIGN KEY (`Tavollet_ID`) REFERENCES `tavolletek` (`Tavollet_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
