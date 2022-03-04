@@ -1,0 +1,77 @@
+.doboz{
+    width: 45%;
+    background-color:   #2ecc71;
+    margin: 50px 5px;
+    padding: 10px;
+    border-radius: 15px;
+
+}
+
+.container-fluid{
+    margin-left: 40px;
+    color: #282828;
+}
+
+h4{
+    margin: 5px 5px 5px 15px;
+}
+
+.logo{
+    display: block;
+    margin: 15px 15px 40px 30px;
+}
+
+h3{
+    line-height: 150%;
+}
+
+#fokep{
+    float: right;
+    max-width: 45%;
+}
+
+#logokep{
+    max-width: 40%;
+}
+
+p{
+    font-size: 1vw;
+}
+
+h1{
+    font-size: 3vw;
+}
+
+h3{
+    font-size: 2vw;
+}
+
+h4{
+    font-size: 2vw;
+}
+
+
+.nav-link{
+    font-size: x-large;
+}
+
+#logo{
+    max-width: 50%;
+    
+}
+
+.dropdown:hover .dropdown-menu {display: block;}
+
+#avatar{
+    max-width: 70%;
+}
+
+.udvozlet{
+    width: 20%;
+    float: left;
+    margin-left: 30px;
+}
+
+aside > h3{
+    text-align: center;
+}

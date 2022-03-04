@@ -1,0 +1,44 @@
+#sheet {
+    margin: 0 auto;
+    width: 90%;
+}
+
+table#havinaptar, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+#havinaptar th {
+    background-color: lightgrey;
+    color: 999;    
+}
+.munkanap {
+    background-color: #C6EFCE;
+    color: #006100;
+    font-weight: bolder;
+}
+.pihenonap {
+    background-color: #FFC7CE;
+    color: #9C0006;
+    font-weight: bolder;   
+}
+.unnep {
+    background-color: #FFC7CE;
+    color: #9C0006;
+    font-weight: bolder;
+}
+.szombat {
+    background-color: #FFEB9C;
+    color: #9C5700;
+    font-weight: bolder;    
+}
+.vasarnap {
+    background-color: #FFEB9C;
+    color: #9C5700;
+    font-weight: bolder;    
+}
+.athelyezett {
+    background-color: #FFEB9C;
+    color: #9C5700;
+    font-weight: bolder;    
+}
